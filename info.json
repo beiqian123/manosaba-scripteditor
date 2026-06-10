@@ -1,0 +1,14 @@
+{
+  "Name": {
+    "zh-Hans": "早安，希罗"
+  },
+  "Description": {
+    "zh-Hans": "在没有艾玛的世界，希罗整理着她留下的一切，走过曾经一起走过的地方。<br>同人文作者：RainLight<br>Mod制作：黑红粉白佳人制作组"
+  },
+  "Author": {
+    "zh-Hans": "黑红粉白佳人制作组"
+  },
+  "Enter": "GoodMorningHiro/1_adv",
+  "Version": "1.0.0",
+  "$schemaVersion": "2.2"
+}

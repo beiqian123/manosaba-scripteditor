@@ -1,0 +1,361 @@
+/* 护眼模式主题 - 柔和绿色 */
+body.theme-eye-protection {
+    background-color: #C7EDCC;
+    color: #333;
+}
+
+body.theme-eye-protection .container {
+    background-color: #C7EDCC;
+}
+
+body.theme-eye-protection .toolbar {
+    background-color: #B8E0BF;
+}
+
+body.theme-eye-protection .sidebar {
+    background-color: #D8F0DC;
+}
+
+body.theme-eye-protection .editor-wrapper {
+    background-color: #E8F7EB;
+}
+
+body.theme-eye-protection .line-numbers {
+    background-color: #D8F0DC;
+    color: #6b8e6b;
+}
+
+body.theme-eye-protection .line-numbers .line-number.error-line {
+    background-color: #ffcccc;
+    color: #cc0000;
+}
+
+body.theme-eye-protection .line-numbers .line-number.warning-line {
+    background-color: #fff3cc;
+    color: #cc6600;
+}
+
+body.theme-eye-protection .editor textarea {
+    background-color: #E8F7EB;
+}
+
+body.theme-eye-protection .parsed-script {
+    background-color: #E8F7EB;
+}
+
+body.theme-eye-protection .parsed-line {
+    background-color: #F0F9F2;
+}
+
+body.theme-eye-protection .parsed-line.comment {
+    background-color: #E5F3E8;
+}
+
+body.theme-eye-protection .syntax-at {
+    color: #6b8e23;
+}
+
+body.theme-eye-protection .syntax-command-name {
+    color: #2e7031;
+}
+
+body.theme-eye-protection .syntax-attr-key {
+    color: #8b5e3c;
+}
+
+body.theme-eye-protection .syntax-attr-operator {
+    color: #4b5320;
+}
+
+body.theme-eye-protection .syntax-string {
+    color: #4b0082;
+}
+
+body.theme-eye-protection .syntax-number {
+    color: #2962ff;
+}
+
+body.theme-eye-protection .syntax-boolean {
+    color: #2e7d32;
+}
+
+body.theme-eye-protection .syntax-identifier {
+    color: #385548;
+}
+
+body.theme-eye-protection .syntax-dialogue-character {
+    color: #2e7d32;
+}
+
+body.theme-eye-protection .syntax-dialogue-text {
+    color: #1a237e;
+}
+
+body.theme-eye-protection .syntax-operator {
+    color: #355e3b;
+}
+
+body.theme-eye-protection .footer {
+    background-color: #B8E0BF;
+}
+
+/* CodeMirror 编辑器护眼主题适配 */
+body.theme-eye-protection .CodeMirror {
+    background-color: #E8F7EB;
+    color: #333;
+}
+
+body.theme-eye-protection .CodeMirror-scroll {
+    background-color: #E8F7EB;
+}
+
+body.theme-eye-protection .CodeMirror-gutters {
+    background-color: #D8F0DC;
+    border-right: 1px solid #b8d4b0;
+}
+
+body.theme-eye-protection .CodeMirror-linenumbers {
+    background-color: #D8F0DC;
+    color: #6b8e6b;
+}
+
+body.theme-eye-protection .CodeMirror-linenumber {
+    color: #6b8e6b;
+}
+
+body.theme-eye-protection .CodeMirror-cursor {
+    border-left-color: #333;
+}
+
+body.theme-eye-protection .CodeMirror-selected {
+    background-color: #c5e0c5;
+}
+
+body.theme-eye-protection .CodeMirror-focused .CodeMirror-selected {
+    background-color: #b8d9b8;
+}
+
+body.theme-eye-protection .CodeMirror-activeline-background {
+    background-color: #d8f0dc;
+}
+
+body.theme-eye-protection .CodeMirror-matchingbracket {
+    color: #2e7031 !important;
+    background-color: #c5e0c5;
+}
+
+body.theme-eye-protection .cm-s-default .cm-keyword {
+    color: #6b8e23;
+}
+
+body.theme-eye-protection .cm-s-default .cm-atom {
+    color: #2e7031;
+}
+
+body.theme-eye-protection .cm-s-default .cm-number {
+    color: #2962ff;
+}
+
+body.theme-eye-protection .cm-s-default .cm-def {
+    color: #2e7031;
+}
+
+body.theme-eye-protection .cm-s-default .cm-variable,
+body.theme-eye-protection .cm-s-default .cm-punctuation,
+body.theme-eye-protection .cm-s-default .cm-property,
+body.theme-eye-protection .cm-s-default .cm-operator {
+    color: #385548;
+}
+
+body.theme-eye-protection .cm-s-default .cm-variable-2 {
+    color: #2e7031;
+}
+
+body.theme-eye-protection .cm-s-default .cm-comment {
+    color: #8b9a6b;
+}
+
+body.theme-eye-protection .cm-s-default .cm-string {
+    color: #4b0082;
+}
+
+body.theme-eye-protection .cm-s-default .cm-string-2 {
+    color: #4b0082;
+}
+
+body.theme-eye-protection .cm-s-default .cm-meta {
+    color: #6b8e6b;
+}
+
+body.theme-eye-protection .cm-s-default .cm-qualifier {
+    color: #8b5e3c;
+}
+
+body.theme-eye-protection .cm-s-default .cm-builtin {
+    color: #2e7031;
+}
+
+body.theme-eye-protection .cm-s-default .cm-bracket {
+    color: #4b5320;
+}
+
+body.theme-eye-protection .cm-s-default .cm-tag {
+    color: #6b8e23;
+}
+
+body.theme-eye-protection .cm-s-default .cm-attribute {
+    color: #8b5e3c;
+}
+
+body.theme-eye-protection .cm-s-default .cm-link {
+    color: #2962ff;
+}
+
+body.theme-eye-protection .cm-s-default .cm-error {
+    color: #cc0000;
+}
+
+body.theme-eye-protection .CodeMirror-hints {
+    background-color: #E8F7EB;
+    border: 1px solid #b8d4b0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    font-size: 14px;
+}
+
+body.theme-eye-protection .CodeMirror-hint {
+    color: #333;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+body.theme-eye-protection .CodeMirror-hint-active {
+    background-color: #c5e0c5;
+    color: #2e7031;
+}
+
+body.theme-eye-protection .CodeMirror-hint-tab-hint {
+    color: #6b8e6b;
+    font-size: 11px;
+    font-style: italic;
+    border-top: 1px solid #b8d4b0;
+    margin-top: 4px;
+    padding-top: 4px;
+}
+
+body.theme-eye-protection .modal-header h3 {
+    color: #2e7031;
+}
+
+body.theme-eye-protection .theme-option input[type="radio"] {
+    display: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+body.theme-eye-protection .command-tooltip {
+    background-color: #E8F7EB;
+    border: 1px solid #b8d4b0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+body.theme-eye-protection .command-tooltip .tooltip-title {
+    color: #2e7031;
+    border-bottom-color: #b8d4b0;
+}
+
+body.theme-eye-protection .command-tooltip .tooltip-content {
+    color: #4a5568;
+}
+
+body.theme-eye-protection .command-tooltip .tooltip-param-name {
+    color: #c05621;
+}
+
+body.theme-eye-protection .command-tooltip .tooltip-param-desc {
+    color: #718096;
+}
+
+/* Markdown 内容护眼模式适配 */
+body.theme-eye-protection .markdown-content {
+    color: #2d3748;
+}
+
+body.theme-eye-protection .markdown-content h1 {
+    color: #2e7031;
+    border-bottom-color: #b8d4b0;
+}
+
+body.theme-eye-protection .markdown-content h2 {
+    color: #2e7031;
+}
+
+body.theme-eye-protection .markdown-content h3 {
+    color: #4a9054;
+}
+
+body.theme-eye-protection .markdown-content strong {
+    color: #2e7031;
+}
+
+body.theme-eye-protection .markdown-content code {
+    background-color: #d8f0dc;
+    color: #8b5e3c;
+}
+
+body.theme-eye-protection .markdown-content pre {
+    background: #e8f7eb;
+    border-color: #b8d4b0;
+}
+
+body.theme-eye-protection .markdown-content pre code {
+    background: none;
+    color: #2d3748;
+}
+
+body.theme-eye-protection .markdown-content th,
+body.theme-eye-protection .markdown-content td {
+    border-color: #b8d4b0;
+}
+
+body.theme-eye-protection .markdown-content th {
+    background-color: #d8f0dc;
+    color: #2e7031;
+}
+
+body.theme-eye-protection .markdown-content blockquote {
+    border-left-color: #2e7031;
+    background-color: #e8f7eb;
+    color: #4a5568;
+}
+
+body.theme-eye-protection .markdown-content hr {
+    border-top-color: #b8d4b0;
+}
+
+/* 阅读模式护眼主题适配 */
+body.theme-eye-protection .reading-script {
+    background-color: #E8F7EB;
+    border-color: #b8d4b0;
+}
+
+body.theme-eye-protection .reading-narration {
+    color: #4a5568;
+    border-left-color: #8b9a6b;
+}
+
+body.theme-eye-protection .reading-script-info {
+    color: #8b9a6b;
+}
+
+body.theme-eye-protection .reading-character {
+    color: #2e7031;
+}
+
+body.theme-eye-protection .reading-quote {
+    color: #6b8e23;
+}
+
+body.theme-eye-protection .reading-dialogue-text {
+    color: #2d3748;
+}

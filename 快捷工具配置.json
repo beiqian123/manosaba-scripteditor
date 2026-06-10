@@ -1,0 +1,2251 @@
+{
+  "panels": [
+    {
+      "name": "日常模式",
+      "categories": [
+        "日常状态设置",
+        "背景控制",
+        "人物表演",
+        "对话相关",
+        "转场效果",
+        "更新魔女图鉴",
+        "音频控制",
+        "剧本跳转",
+        "UI控制",
+        "一些小功能",
+        "证物展示相关",
+        "角色动画"
+      ]
+    },
+    {
+      "name": "审判模式",
+      "categories": [
+        "审判状态设置",
+        "审判开始与结束",
+        "设置审判对话",
+        "庭审相关功能",
+        "更新魔女图鉴",
+        "论破设置",
+        "音频控制",
+        "剧本跳转",
+        "UI控制",
+        "证物展示相关"
+      ]
+    },
+    {
+      "name": "模板一览",
+      "categories": [
+        "运镜模板",
+        "转场模板"
+      ]
+    },
+    {
+      "name": "自定义内容",
+      "categories": [
+        "更新魔女图鉴",
+        "证物出示相关",
+        "自定义角色",
+        "自定义角色对话",
+        "自定义角色动画"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "name": "日常状态设置",
+      "items": [
+        {
+          "name": "初始化日常状态",
+          "icon": "I",
+          "type": "direct",
+          "output": "@gosub System/System_Subroutine.BeginAdv",
+          "shortcut": ""
+        },
+        {
+          "name": "结束日常状态",
+          "icon": "O",
+          "type": "direct",
+          "output": "@Gosub System/System_Subroutine.EndAdv",
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "背景控制",
+      "items": [
+        {
+          "name": "切换背景",
+          "icon": "■",
+          "type": "modal",
+          "modal": {
+            "title": "切换背景",
+            "description": "",
+            "fields": [
+              {
+                "name": "背景id",
+                "type": "text",
+                "placeholder": "输入背景id",
+                "required": true
+              },
+              {
+                "name": "是否为插图类（Stills）",
+                "type": "checkbox",
+                "label": "将背景Id设为插图类",
+                "checkedValue": " Id:Stills ",
+                "uncheckedValue": " "
+              },
+              {
+                "name": "位置X",
+                "type": "number",
+                "placeholder": "X坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "位置Y",
+                "type": "number",
+                "placeholder": "Y坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "缩放",
+                "type": "text",
+                "placeholder": "输入比例（不填则输出默认值）",
+                "defaultValue": "{g_backgroundDefaultScale}",
+                "step": "0.01"
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择背景所在图层",
+                "options": "Middle|Middle、Front|Front",
+                "step": "any",
+                "fieldCategory": "optional",
+                "outputTemplate": "SubId:{N}"
+              },
+              {
+                "name": "色调（色号）",
+                "type": "text",
+                "placeholder": "根据需求填写",
+                "step": "any",
+                "fieldCategory": "optional",
+                "outputTemplate": "tint:\"{N}\""
+              },
+              {
+                "name": "不允许等待",
+                "type": "checkbox",
+                "label": "勾选后会和下一条代码同时执行",
+                "checkedValue": "false",
+                "uncheckedValue": "true"
+              },
+              {
+                "name": "动画时间",
+                "type": "text",
+                "placeholder": "根据需求填写",
+                "defaultValue": "0",
+                "step": "any",
+                "fieldCategory": "optional",
+                "outputTemplate": "time:{N}"
+              }
+            ],
+            "output": "@back {1}{2}pos:{3},{4} Scale:{5} wait:{6}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "隐藏背景",
+          "icon": "〼",
+          "type": "modal",
+          "modal": {
+            "title": "隐藏背景",
+            "fields": [
+              {
+                "name": "是否为插图类（Stills）",
+                "type": "checkbox",
+                "label": "将背景Id设为插图类",
+                "checkedValue": "Stills",
+                "uncheckedValue": "MainBackground"
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择背景所在图层",
+                "options": "Middle|-Middle、Front|-Front",
+                "step": "any"
+              }
+            ],
+            "output": "@hide {1}{2}",
+            "description": ""
+          },
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "人物表演",
+      "items": [
+        {
+          "name": "显示角色",
+          "icon": "+",
+          "type": "modal",
+          "modal": {
+            "title": "配置角色表演",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色",
+                "type": "dropdown",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）【该角色为数字】|Jailer、典狱长（Warden）【该角色为数字】|Warden、月代雪（Yuki）【该角色为数字】|Yuki",
+                "placeholder": "选择角色",
+                "required": true
+              },
+              {
+                "name": "动作参数",
+                "type": "text",
+                "placeholder": "请前往立绘编辑器中配置角色动作后复制到此处。",
+                "required": true
+              },
+              {
+                "name": "位置X",
+                "type": "number",
+                "placeholder": "输入x坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "位置Y",
+                "type": "number",
+                "placeholder": "输入y坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "默认（不显示）",
+                "options": "Front、Middle",
+                "step": "any",
+                "fieldCategory": "optional",
+                "outputTemplate": "SubId:\"{N}\""
+              },
+              {
+                "name": "动画时间（秒）",
+                "type": "number",
+                "placeholder": "根据需求填写",
+                "step": "0.1",
+                "fieldCategory": "optional",
+                "outputTemplate": "time:{N}",
+                "defaultValue": ""
+              },
+              {
+                "name": "比例（倍）",
+                "type": "number",
+                "placeholder": "根据需求填写",
+                "step": "0.01",
+                "fieldCategory": "optional",
+                "outputTemplate": "Scale:{N}",
+                "defaultValue": ""
+              },
+              {
+                "name": "色调（色号）",
+                "type": "text",
+                "placeholder": "根据需求填写",
+                "fieldCategory": "optional",
+                "outputTemplate": "tint:\"{N}\""
+              },
+              {
+                "name": "不允许等待",
+                "type": "checkbox",
+                "label": "勾选后会和下一条代码同时执行",
+                "checkedValue": "false",
+                "uncheckedValue": "true",
+                "fieldCategory": "optional",
+                "outputTemplate": "Wait:{N}",
+                "defaultValue": "unchecked"
+              }
+            ],
+            "output": "@char {1}.{2} pos:{3},{4}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "隐藏角色",
+          "icon": "-",
+          "type": "modal",
+          "modal": {
+            "title": "隐藏角色",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色",
+                "type": "dropdown",
+                "placeholder": "选择角色",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden、月代雪（Yuki）|Yuki",
+                "required": true,
+                "step": "any"
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择该角色所在图层",
+                "options": "Middle|-Middle、Front|-Front",
+                "step": "any"
+              }
+            ],
+            "output": "@hide {1}{2}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "隐藏所有角色",
+          "icon": "〼",
+          "type": "direct",
+          "output": "@hidechars",
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "对话相关",
+      "items": [
+        {
+          "name": "添加旁白",
+          "icon": "T",
+          "type": "modal",
+          "modal": {
+            "title": "添加旁白",
+            "description": "",
+            "fields": [
+              {
+                "name": "旁白文本",
+                "type": "text",
+                "placeholder": "输入旁白文本",
+                "required": true
+              }
+            ],
+            "output": "@print \"{1}\" WaitInput:true Wait:true"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "添加角色对话",
+          "icon": "Aa",
+          "type": "modal",
+          "modal": {
+            "title": "添加角色对话",
+            "description": "",
+            "fields": [
+              {
+                "name": "对话文本",
+                "type": "text",
+                "placeholder": "输入对话文本",
+                "required": true
+              },
+              {
+                "name": "对话人物",
+                "type": "dropdown",
+                "placeholder": "选择人物",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden、月代雪（Yuki）|Yuki",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@print \"{1}\" Author:\"{2}\" WaitInput:true Wait:true"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "快速添加对话",
+          "icon": ">",
+          "type": "direct",
+          "shortcut": "Alt+1",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@print \"[对话]\" Author:\"[角色]\" WaitInput:true Wait:true"
+        },
+        {
+          "name": "插入换行符",
+          "icon": "↲",
+          "type": "direct",
+          "shortcut": "Alt+2",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "<br>",
+          "inlineInsert": true
+        },
+        {
+          "name": "插入空白符",
+          "icon": "",
+          "type": "direct",
+          "shortcut": "Alt+3",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "　",
+          "inlineInsert": true
+        },
+        {
+          "name": "插入彩色字体",
+          "icon": "",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "插入彩色字体",
+            "description": "",
+            "fields": [
+              {
+                "name": "色号",
+                "type": "text",
+                "placeholder": "输入色号",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "文本",
+                "type": "text",
+                "placeholder": "选填，在此输入的文本会变为设定的颜色",
+                "step": "any"
+              }
+            ],
+            "output": "<color={1}>{2}</color>"
+          },
+          "output": "",
+          "inlineInsert": true
+        }
+      ]
+    },
+    {
+      "name": "转场效果",
+      "items": [
+        {
+          "name": "设置等待",
+          "icon": "…",
+          "type": "modal",
+          "modal": {
+            "title": "配置等待时间",
+            "fields": [
+              {
+                "name": "时长",
+                "type": "text",
+                "placeholder": "输入等待时长"
+              }
+            ],
+            "output": "@Wait \"{1}\"",
+            "description": ""
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "设置遮罩层",
+          "icon": "■",
+          "type": "modal",
+          "output": "@back SubId:\"Overlay\" SolidColor tint:\"#000000\" time:0.99 wait:true",
+          "modal": {
+            "title": "设置遮罩层",
+            "description": "",
+            "fields": [
+              {
+                "name": "选择遮罩层类型",
+                "type": "dropdown",
+                "placeholder": "选择想要控制的遮罩层",
+                "options": "纯色（SolidColor）|SolidColor、透明（Transparent）|Transparent",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "色调",
+                "type": "text",
+                "placeholder": "根据需求填写",
+                "defaultValue": "#000000",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "动画时间",
+                "type": "number",
+                "placeholder": "设置动画时间",
+                "defaultValue": "0.99",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@back SubId:\"Overlay\" {1} tint:{2} time:{3}"
+          },
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "审判状态设置",
+      "items": [
+        {
+          "name": "初始化审判状态",
+          "icon": "I",
+          "type": "modal",
+          "modal": {
+            "title": "初始化审判状态",
+            "description": "初始化审判的文件通常与剧本一同放在Scripts文件夹中。<div>例：初始化审判文件位于“Scripts/Mod1/TrialInit.nani”;</div><div>在下方输入框输入“Mod1/TrialInit”即可。</div>",
+            "fields": [
+              {
+                "name": "设置初始化审判",
+                "type": "text",
+                "placeholder": "初始化文件路径",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@Gosub {1}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "结束审判状态",
+          "icon": "O",
+          "type": "direct",
+          "output": "@Gosub System/System_Subroutine.EndTrial",
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "审判开始与结束",
+      "items": [
+        {
+          "name": "设置审问开始",
+          "icon": "I",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@gosub System/System_Subroutine.BeginDebate-First\n@gosub System/System_Subroutine.BeginDebate-Effect\n@gosub System/System_Subroutine.BeginDebate-Last"
+        },
+        {
+          "name": "设置审问结束",
+          "icon": "O",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@Gosub System/System_Subroutine.EndDebate-First\n@pauseTrial true\n@Gosub System/System_Subroutine.EndDebate-Effect\n@Gosub System/System_Subroutine.EndDebate-Last"
+        }
+      ]
+    },
+    {
+      "name": "设置审判对话",
+      "items": [
+        {
+          "name": "添加审问状态对话",
+          "icon": "Aa",
+          "type": "modal",
+          "modal": {
+            "title": "添加审问状态对话",
+            "description": "",
+            "fields": [
+              {
+                "name": "字体位置X",
+                "type": "number",
+                "placeholder": "输入字体的x坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "字体位置Y",
+                "type": "number",
+                "placeholder": "输入字体的y坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "字体角度",
+                "type": "number",
+                "placeholder": "设置字体角度",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "对话文本",
+                "type": "text",
+                "placeholder": "输入对话文本",
+                "required": true
+              }
+            ],
+            "output": "@printDebate pos:{1},{2} Roll:{3} \"{4}\" "
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "添加非审问状态对话",
+          "icon": "Aa",
+          "type": "modal",
+          "modal": {
+            "title": "添加非审问状态对话",
+            "description": "",
+            "fields": [
+              {
+                "name": "对话文本",
+                "type": "text",
+                "placeholder": "输入对话文本",
+                "required": true
+              },
+              {
+                "name": "对话人物",
+                "type": "dropdown",
+                "placeholder": "选择人物",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden、月代雪（Yuki）|Yuki",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@print \"{1}\" Author:\"{2}\" WaitInput:true Wait:true"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "插入破绽点",
+          "icon": "!",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "插入破绽点",
+            "description": "官方破绽点的命名为“周目_章节_剧本序号_锚点编号”。<div>例：二周目、第5章、第3个剧本、第7个剧本锚点；</div><div>则破绽点命名为“02_05_03_07”。</div>",
+            "fields": [
+              {
+                "name": "破绽点id（不允许重复）",
+                "type": "text",
+                "placeholder": "推荐格式：Objection_001",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "<link=\\\"{1}\\\"></link>"
+          },
+          "output": "",
+          "inlineInsert": true
+        },
+        {
+          "name": "添加破绽点选项（艾玛）",
+          "icon": "Em",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "破绽点选项",
+            "description": "",
+            "fields": [
+              {
+                "name": "破绽锚点",
+                "type": "text",
+                "placeholder": "必填，不能重复",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "设置破绽点",
+                "type": "item_list",
+                "placeholder": "",
+                "subFields": [
+                  {
+                    "name": "选项文本",
+                    "type": "text",
+                    "placeholder": "输入文本",
+                    "required": true
+                  },
+                  {
+                    "name": "辩论类型",
+                    "type": "dropdown",
+                    "placeholder": "选择辩论类型",
+                    "options": "反驳|Objection、赞同|Approval、疑问|Question、伪证|Perjury、【杀死魔女的魔法】|MagicEma、【洗脑】|MagicAnAn、【幻视】|MagicNanoka、【千里眼】|MagicCoco、【视线诱导】|MagicLeia、【模仿】|MagicMargo",
+                    "defaultValue": "Objection"
+                  },
+                  {
+                    "name": "跳转剧本",
+                    "type": "text",
+                    "placeholder": "输入剧本&锚点名",
+                    "options": "艾玛|Trial、希罗|TrialHiro"
+                  }
+                ],
+                "itemTemplate": "@choice \"{1}\" button:\"ChoiceButtons/Trial/{2}\" handler:\"Trial\"\n  @sfx \"Sfx_System_SaveData_001_2x\"\n  @StopVoice\n  @CancelGosub\n  @goto .{3}",
+                "blockSuffix": "@StopForChoice"
+              }
+            ],
+            "output": "# {1}\n\n@Skip false\n@pauseTrial true\n\n{2}\n\n@choice \"返回\" button:\"ChoiceButtons/Trial/Cancel\" handler:\"Trial\"\n  @pauseTrial false\n  @Wait \"i{debateWaitTime}\"\n  @Return"
+          }
+        },
+        {
+          "name": "添加破绽点选项（希罗）",
+          "icon": "Hr",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "破绽点选项",
+            "description": "",
+            "fields": [
+              {
+                "name": "破绽锚点",
+                "type": "text",
+                "placeholder": "必填，不能重复",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "设置破绽点",
+                "type": "item_list",
+                "placeholder": "",
+                "subFields": [
+                  {
+                    "name": "选项文本",
+                    "type": "text",
+                    "placeholder": "输入文本"
+                  },
+                  {
+                    "name": "辩论类型",
+                    "type": "dropdown",
+                    "placeholder": "选择辩论类型",
+                    "options": "反驳|Objection、赞同|Approval、疑问|Question、伪证|Perjury、【杀死魔女的魔法】|MagicEma、【洗脑】|MagicAnAn、【幻视】|MagicNanoka、【千里眼】|MagicCoco、【视线诱导】|MagicLeia、【模仿】|MagicMargo",
+                    "defaultValue": "Objection"
+                  },
+                  {
+                    "name": "跳转剧本",
+                    "type": "text",
+                    "placeholder": "输入剧本&锚点名",
+                    "options": "艾玛|Trial、希罗|TrialHiro"
+                  }
+                ],
+                "itemTemplate": "@choice \"{1}\" button:\"ChoiceButtons/Trial/{2}\" handler:\"TrialHiro\"\n  @sfx \"Sfx_System_SaveData_001_2x\"\n  @StopVoice\n  @CancelGosub\n  @goto .{3}",
+                "blockSuffix": "@StopForChoice"
+              }
+            ],
+            "output": "# {1}\n\n@Skip false\n@pauseTrial true\n\n{2}\n\n@choice \"返回\" button:\"ChoiceButtons/Trial/Cancel\" handler:\"TrialHiro\"\n  @pauseTrial false\n  @Wait \"i{debateWaitTime}\"\n  @Return"
+          }
+        },
+        {
+          "name": "出示正确证物以推进剧情",
+          "icon": "T",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "出示正确证物以推进剧情",
+            "description": "",
+            "fields": [
+              {
+                "name": "证物id",
+                "type": "text",
+                "placeholder": "输入证物id",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "配置分支选项",
+                "type": "item_list",
+                "placeholder": "",
+                "subFields": [
+                  {
+                    "name": "证物名称",
+                    "type": "text"
+                  },
+                  {
+                    "name": "跳转锚点",
+                    "type": "text",
+                    "placeholder": "输入锚点名称"
+                  }
+                ],
+                "itemTemplate": "@if \"chosenEvidenceId==\\\"{1}\\\"\"\n    @goto .{2}"
+              },
+              {
+                "name": "配置通用错误锚点",
+                "type": "text",
+                "placeholder": "没有单独设置剧本锚点的证物会使用这个锚点",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@evidence correct:\"{1}\" Clue\n\n{2}\n\n@goto .{3}"
+          }
+        },
+        {
+          "name": "出示正确人物以推进剧情",
+          "icon": "T",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "出示正确人物以推进剧情",
+            "description": "",
+            "fields": [
+              {
+                "name": "人物名",
+                "type": "dropdown",
+                "placeholder": "选择人物",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "配置分支选项",
+                "type": "item_list",
+                "placeholder": "",
+                "subFields": [
+                  {
+                    "name": "人物名",
+                    "type": "dropdown",
+                    "placeholder": "选择人物",
+                    "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden"
+                  },
+                  {
+                    "name": "跳转锚点",
+                    "type": "text",
+                    "placeholder": "输入锚点名称"
+                  }
+                ],
+                "itemTemplate": "@if \"chosenEvidenceId==\\\"{1}\\\"\"\n    @goto .{2}"
+              },
+              {
+                "name": "配置通用错误锚点",
+                "type": "text",
+                "placeholder": "没有单独设置剧本锚点的证物会使用这个锚点",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@evidence correct:\"{1}\" Profile\n\n{2}\n\n@goto .{3}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "庭审相关功能",
+      "items": [
+        {
+          "name": "隐藏正交相机",
+          "icon": "-",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@hideStageScreen 1"
+        },
+        {
+          "name": "设置剧本锚点",
+          "icon": "#",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "设置锚点",
+            "description": "",
+            "fields": [
+              {
+                "name": "设置剧本锚点",
+                "type": "text",
+                "placeholder": "锚点名称",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "# {1}"
+          }
+        },
+        {
+          "name": "显示庭审角色",
+          "icon": "+",
+          "type": "modal",
+          "modal": {
+            "title": "配置庭审角色表演",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色",
+                "type": "dropdown",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）【该角色为数字】|Jailer、典狱长（Warden）【该角色为数字】|Warden、月代雪（Yuki）【该角色为数字】|Yuki",
+                "placeholder": "选择角色",
+                "required": true
+              },
+              {
+                "name": "动作参数",
+                "type": "text",
+                "placeholder": "请前往立绘编辑器中配置角色动作后复制到此处。",
+                "required": true
+              }
+            ],
+            "output": "@char {1}.{2}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "设置摄像头",
+          "icon": "O",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "设置摄像头",
+            "description": "",
+            "fields": [
+              {
+                "name": "摄像头看向的人物",
+                "type": "dropdown",
+                "placeholder": "选择角色",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden、月代雪（Yuki）|Yuki",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "字体位置",
+                "type": "dropdown",
+                "placeholder": "在审问状态时需要选择",
+                "options": "左边（Left）|Left、中间（Center）|Center、右边（Right）|Right",
+                "step": "any",
+                "fieldCategory": "optional",
+                "outputTemplate": "comp:{N}"
+              },
+              {
+                "name": "人物位置",
+                "type": "dropdown",
+                "placeholder": "选择人物位置",
+                "options": "左边（Left）|Left、中间（Center）|Center、右边（Right）|Right",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@gosubModifyCamera 0 look:\"{1}\" rollDir:\"{2}\""
+          }
+        },
+        {
+          "name": "显示角色并设置摄像头",
+          "icon": "⊕",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "显示角色并设置摄像头",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色&摄像头看向的人物",
+                "type": "dropdown",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden、月代雪（Yuki）|Yuki",
+                "placeholder": "选择角色",
+                "required": true
+              },
+              {
+                "name": "动作参数",
+                "type": "text",
+                "placeholder": "请前往立绘编辑器中配置角色动作后复制到此处。",
+                "required": true
+              },
+              {
+                "name": "字体位置",
+                "type": "dropdown",
+                "placeholder": "在审问状态时需要选择",
+                "options": "左边（Left）|Left、中间（Center）|Center、右边（Right）|Right",
+                "step": "any",
+                "fieldCategory": "optional",
+                "outputTemplate": "comp:{N}"
+              },
+              {
+                "name": "人物位置",
+                "type": "dropdown",
+                "placeholder": "选择人物位置",
+                "options": "左边（Left）|Left、中间（Center）|Center、右边（Right）|Right",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@char {1}.{2}\n@gosubModifyCamera 0 look:\"{1}\" rollDir:\"{3}\""
+          }
+        },
+        {
+          "name": "条件判断",
+          "icon": "if",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "条件判断",
+            "description": "配置 @if 条件跳转，根据条件是否成立跳转到不同位置",
+            "fields": [
+              {
+                "name": "条件",
+                "type": "text",
+                "placeholder": "如：Skip1_1flag1 或 chosenEvidenceId==\\\"NewClue_1\\\"",
+                "required": true
+              },
+              {
+                "name": "成立时跳转",
+                "type": "text",
+                "placeholder": "输入剧本锚点",
+                "required": true
+              },
+              {
+                "name": "不成立时跳转",
+                "type": "text",
+                "placeholder": "输入剧本锚点",
+                "required": true
+              }
+            ],
+            "output": "@if \"{1}\"\n  @goto .{2}\n@goto .{3}"
+          }
+        },
+        {
+          "name": "设置变量",
+          "icon": "if",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "设置变量",
+            "description": "设置/修改变量的值，常用于控制讨论前进、分支条件等",
+            "fields": [
+              {
+                "name": "变量名",
+                "type": "text",
+                "placeholder": "如：Skip1_1flag1",
+                "required": true
+              },
+              {
+                "name": "变量值",
+                "type": "text",
+                "placeholder": "如：true、false、1、0",
+                "required": true
+              }
+            ],
+            "output": "@set \"{1}={2}\""
+          }
+        }
+      ]
+    },
+    {
+      "name": "证物展示相关",
+      "items": [
+        {
+          "name": "显示证物",
+          "icon": "↑",
+          "type": "modal",
+          "modal": {
+            "title": "显示证物",
+            "description": "例：展示证物“希罗的钢笔（对应证物id：10_1）”；<div>在下方输入框输入“10_1”即可。</div>",
+            "fields": [
+              {
+                "name": "证物ID",
+                "type": "text",
+                "placeholder": "输入证物id",
+                "required": true
+              }
+            ],
+            "output": "@spawn \"Clue\" Params:{1}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "隐藏证物",
+          "icon": "↓",
+          "type": "direct",
+          "output": "@despawn \"Clue\"",
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "更新魔女图鉴",
+      "items": [
+        {
+          "name": "弹出提示消息",
+          "icon": "@",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "弹出提示信息",
+            "description": "在此处输入的文本内容会在画面左上角出现。",
+            "fields": [
+              {
+                "name": "提示信息",
+                "type": "text",
+                "placeholder": "输入提示信息",
+                "defaultValue": "魔女图鉴 更新…",
+                "step": "any"
+              }
+            ],
+            "output": "@toast \"{1}\""
+          },
+          "output": "@toast \"{1}\""
+        },
+        {
+          "name": "更新证物信息",
+          "icon": "C",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "更新证物信息",
+            "description": "注意：更新的内容需要写入Mod中的info.json文件，否则默认按官方的版本更新",
+            "fields": [
+              {
+                "name": "证物id",
+                "type": "text",
+                "placeholder": "Mod/WitchBook/Clue文件夹下的证物文件名（不带后缀）",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "版本号",
+                "type": "text",
+                "placeholder": "info.json文件里配置的版本号",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@update \"{1}\" Category:\"Clue\" Version:{2}"
+          }
+        },
+        {
+          "name": "更新人物信息",
+          "icon": "P",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "更新人物信息",
+            "description": "注意：更新的内容需要写入Mod中的info.json文件，否则默认按官方的版本更新",
+            "fields": [
+              {
+                "name": "人物名",
+                "type": "dropdown",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden",
+                "placeholder": "选择角色",
+                "required": true
+              },
+              {
+                "name": "版本号",
+                "type": "text",
+                "placeholder": "info.json文件里配置的版本号",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@update \"{1}\" Category:\"Profile\" Version:{2}"
+          }
+        },
+        {
+          "name": "更新规则信息",
+          "icon": "R",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "更新规则信息",
+            "description": "注意：更新的内容需要写入Mod中的info.json文件，否则默认按官方的版本更新",
+            "fields": [
+              {
+                "name": "规则id",
+                "type": "text",
+                "placeholder": "",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "版本号",
+                "type": "text",
+                "placeholder": "info.json文件里配置的版本号",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@update \"{1}\" Category:\"Rule\" Version:{2}"
+          }
+        },
+        {
+          "name": "更新笔记信息",
+          "icon": "N",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "更新笔记信息",
+            "description": "注意：更新的内容需要写入Mod中的info.json文件，否则默认按官方的版本更新",
+            "fields": [
+              {
+                "name": "笔记id",
+                "type": "text",
+                "placeholder": "",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "版本号",
+                "type": "text",
+                "placeholder": "info.json文件里配置的版本号",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@update \"{1}\" Category:\"Note\" Version:{2}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "论破设置",
+      "items": [
+        {
+          "name": "艾玛论破",
+          "icon": "Em",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "设置艾玛论破",
+            "description": "",
+            "fields": [
+              {
+                "name": "Index值",
+                "type": "dropdown",
+                "placeholder": "",
+                "options": "0、1、2",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@Gosub System/System_Subroutine.EndDebate-First\n@pauseTrial false timer:false\n@HideUI DebateUI\n@ShowUI ControlPanel\n@StopBgm\n@gosubCutIn \"Ema\" Index:{1}\n@Gosub System/System_Subroutine.EndDebate-Last"
+          }
+        },
+        {
+          "name": "希罗论破",
+          "icon": "Hr",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "设置希罗论破",
+            "description": "",
+            "fields": [
+              {
+                "name": "Index值",
+                "type": "dropdown",
+                "placeholder": "",
+                "options": "1、2、3",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@Gosub System/System_Subroutine.EndDebate-First\n@pauseTrial false timer:false\n@HideUI DebateUI\n@ShowUI ControlPanel\n@StopBgm\n@gosubCutIn \"Hiro\" Index:{1}\n@Gosub System/System_Subroutine.EndDebate-Last"
+          }
+        },
+        {
+          "name": "魔女化希罗论破",
+          "icon": "Hr",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "设置魔女化希罗论破",
+            "description": "",
+            "fields": [
+              {
+                "name": "Index值",
+                "type": "dropdown",
+                "placeholder": "",
+                "options": "1、2、3",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@Gosub System/System_Subroutine.EndDebate-First\n@pauseTrial false timer:false\n@HideUI DebateUI\n@ShowUI ControlPanel\n@StopBgm\n@gosubCutIn \"CreatureHiro\" Index:{1}\n@Gosub System/System_Subroutine.EndDebate-Last"
+          }
+        }
+      ]
+    },
+    {
+      "name": "音频控制",
+      "items": [
+        {
+          "name": "播放音效",
+          "icon": "♩",
+          "type": "modal",
+          "modal": {
+            "title": "播放音效",
+            "description": "例：播放音效“Sfx_1”;<div>在下方输入框输入“1”即可。</div>",
+            "fields": [
+              {
+                "name": "音效名称",
+                "type": "text",
+                "placeholder": "输入音效id，不需要Sfx开头",
+                "required": true
+              }
+            ],
+            "output": "@sfx \"Sfx_{1}\""
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "播放BGM（仅Loop）",
+          "icon": "♫",
+          "type": "modal",
+          "modal": {
+            "title": "播放BGM（仅Loop）",
+            "description": "例：播放BGM“Bgm_1_1”;<div>在下方输入框输入“Bgm_1_1”即可。</div>",
+            "fields": [
+              {
+                "name": "BGM名称",
+                "type": "text",
+                "placeholder": "输入BGM的id",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@bgm \"{1}\""
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "播放BGM（含Intro）",
+          "icon": "♬",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "播放BGM（含Intro）",
+            "description": "例：播放BGM“Bgm_40_1_Loop”，起始文件是“Bgm_40_1_Intro”;<div>在下方输入框输入“40_1”即可。</div>",
+            "fields": [
+              {
+                "name": "BGM名称",
+                "type": "text",
+                "placeholder": "输入BGM的id",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@Bgm \"Bgm_{1}_Loop\" Intro:\"Bgm_{1}_Intro\""
+          }
+        },
+        {
+          "name": "播放语音",
+          "icon": "Voi",
+          "type": "modal",
+          "modal": {
+            "title": "播放语音",
+            "description": "语音位置以Voice为根目录。<div>示例：播放音频“Voice/Mod1/Ema1.ogg”；</div><div>在下方输入框输入“Mod1/Ema1”即可。</div>",
+            "fields": [
+              {
+                "name": "语音名称",
+                "type": "text",
+                "placeholder": "输入语音路径，不需要加后缀名",
+                "required": true
+              }
+            ],
+            "output": "@voice \"{1}\""
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "停止BGM",
+          "icon": "〼",
+          "type": "direct",
+          "output": "@StopBgm",
+          "shortcut": ""
+        },
+        {
+          "name": "停止语音",
+          "icon": "〼",
+          "type": "direct",
+          "output": "@StopVoice",
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "剧本跳转",
+      "items": [
+        {
+          "name": "剧本跳转",
+          "icon": "➤",
+          "type": "modal",
+          "modal": {
+            "title": "剧本跳转",
+            "description": "剧本位置以Scripts为根目录。<div>示例：跳转到剧本文件“Scripts/Mod1/Adv1.nani”；</div><div>在下方输入框输入“Mod1/Adv01”即可。</div>",
+            "fields": [
+              {
+                "name": "文件位置",
+                "type": "text",
+                "placeholder": "输入文件路径（不需要后缀名）",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@goto soft:true {1}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "分支选项",
+          "icon": "∈",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "分支选项",
+            "description": "配置剧情分支选择，可自由添加/删除分支条目",
+            "fields": [
+              {
+                "name": "剧本锚点",
+                "type": "text",
+                "placeholder": "输入锚点id（不允许重复）",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "分支选项列表",
+                "type": "item_list",
+                "placeholder": "",
+                "subFields": [
+                  {
+                    "name": "选项文本",
+                    "type": "text",
+                    "placeholder": "输入分支名"
+                  },
+                  {
+                    "name": "是否为死亡结局",
+                    "type": "checkbox",
+                    "checkedValue": "button:\"ChoiceButtons/Adv/Bad\"",
+                    "uncheckedValue": "false"
+                  },
+                  {
+                    "name": "跳转目标",
+                    "type": "text",
+                    "placeholder": "输入跳转的剧本名称"
+                  }
+                ],
+                "itemTemplate": "@choice \"{1}\" {2}\n    @goto {3}",
+                "blockSuffix": "@stopForChoice"
+              }
+            ],
+            "output": "{1}\n\n{2}"
+          }
+        },
+        {
+          "name": "剧本内跳转",
+          "icon": "→",
+          "type": "modal",
+          "modal": {
+            "title": "剧本内跳转",
+            "description": "在跳转到设置的锚点前，请确保剧本内存在这一锚点。<div>例：跳转到Scripts/Mod/Adv2中的skip1锚点；</div><div>在剧本名处输入Mod/Adv2、锚点名处输入skip1即可。</div>",
+            "fields": [
+              {
+                "name": "剧本名",
+                "type": "text",
+                "placeholder": "跨剧本跳转时输入目标文件路径",
+                "step": "any"
+              },
+              {
+                "name": "锚点名称",
+                "type": "text",
+                "placeholder": "输入想要跳转的锚点名称",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@goto {1}.{2}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "跳转到标题界面",
+          "icon": "↶",
+          "type": "direct",
+          "output": "@ReturnToTitle Wait:true",
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "UI控制",
+      "items": [
+        {
+          "name": "清除文本",
+          "icon": "X",
+          "type": "direct",
+          "output": "@ResetText",
+          "shortcut": ""
+        },
+        {
+          "name": "暂时隐藏对话框",
+          "icon": "〼",
+          "type": "direct",
+          "output": "@HidePrinter",
+          "shortcut": ""
+        },
+        {
+          "name": "隐藏边框",
+          "icon": "〼",
+          "type": "direct",
+          "output": "@Printer Normal.Simple",
+          "shortcut": ""
+        },
+        {
+          "name": "显示边框",
+          "icon": "■",
+          "type": "direct",
+          "output": "@Printer Normal.Default",
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "运镜模板",
+      "items": [
+        {
+          "name": "运镜模板-左右",
+          "icon": "①",
+          "type": "modal",
+          "modal": {
+            "title": "设置运镜模板",
+            "description": "",
+            "fields": [
+              {
+                "name": "插图ID",
+                "type": "text",
+                "placeholder": "例如：520_1",
+                "required": true
+              }
+            ],
+            "output": "@back {1} pos:85,105 Id:\"Stills\" Scale:2.8 time:0\n@animate Stills posX:\"60\" easing:\"EaseOutQuad\" time:\"1.5\"\n@back SubId:\"Overlay\" Transparent time:1.2\n@Wait \"2.4\"\n@animate Stills\n@back SubId:\"Middle\" {1} pos:25,-30 Id:\"Stills\" Scale:3 time:0.6\n@animate Stills-Middle posX:\"50\" easing:\"EaseOutQuad\" time:\"1.5\"\n@Wait \"2.4\"\n@animate Stills-Middle\n@back {1} pos:50,50 Id:\"Stills\" Scale:1.5 time:0\n@blur \"Stills\" time:0\n@animate Stills Scale:\"1.15\" easing:\"EaseOutQuad\" time:\"2.4\"\n@blur \"Stills\" power:0 time:1.8\n@hide Stills-Middle time:0.6\n@Wait \"3\""
+          },
+          "shortcut": "",
+          "tooltipEnabled": false
+        },
+        {
+          "name": "运镜模板-上下",
+          "icon": "②",
+          "type": "modal",
+          "modal": {
+            "title": "设置运镜模板",
+            "description": "",
+            "fields": [
+              {
+                "name": "插图ID",
+                "type": "text",
+                "placeholder": "例如：20_1",
+                "required": true
+              }
+            ],
+            "output": "@animate Stills\n@back {1} pos:120,30 Id:\"Stills\" Scale:3 time:0.6\n@animate Stills posY:\"90\" easing:\"EaseOutQuad\" time:\"1.5\"\n@back SubId:\"Overlay\" Transparent time:1.2\n@Wait \"2.4\"\n@back SubId:\"Middle\" {1} pos:5,45 Id:\"Stills\" Scale:3 time:0\n@animate Stills-Middle posY:\"-10\" easing:\"EaseOutQuad\" time:\"1.5\"\n@Wait \"2.4\"\n@animate Stills-Middle\n@back {1} pos:50,50 Id:\"Stills\" Rotation:,,0 Scale:1.5 time:0\n@blur \"Stills\" time:0\n@animate Stills Scale:\"1.15\" easing:\"EaseOutQuad\" time:\"2.4\"\n@blur \"Stills\" power:0 time:1.8\n@hide Stills-Middle time:0.6\n@Wait \"3\""
+          },
+          "shortcut": "",
+          "tooltipEnabled": false
+        }
+      ]
+    },
+    {
+      "name": "一些小功能",
+      "items": [
+        {
+          "name": "晃动UI",
+          "icon": "↔",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@Shake"
+        },
+        {
+          "name": "晃动摄像头",
+          "icon": "↔",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@Shake \"Camera\""
+        },
+        {
+          "name": "缩放镜头",
+          "icon": "＋",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "缩放镜头",
+            "description": "",
+            "fields": [
+              {
+                "name": "位置X",
+                "type": "text",
+                "placeholder": "输入X坐标",
+                "defaultValue": "0",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "位置Y",
+                "type": "text",
+                "placeholder": "输入Y坐标",
+                "defaultValue": "0",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "缩放大小",
+                "type": "number",
+                "placeholder": "输入缩放大小（倍）",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "时间",
+                "type": "number",
+                "placeholder": "输入动画时间",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@camera Offset:{1},{2} Zoom:{3} time:{4}"
+          }
+        },
+        {
+          "name": "允许玩家输入",
+          "icon": "√",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@ProcessInput true"
+        },
+        {
+          "name": "禁止玩家输入",
+          "icon": "×",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@ProcessInput false"
+        },
+        {
+          "name": "播放视频",
+          "icon": "Mv",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "播放视频",
+            "description": "视频文件的根目录为Movie。",
+            "fields": [
+              {
+                "name": "视频位置",
+                "type": "text",
+                "placeholder": "输入视频路径（不带后缀）",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@movie \"{1}\" Wait:true"
+          }
+        },
+        {
+          "name": "设置出框",
+          "icon": "[]",
+          "type": "modal",
+          "shortcut": "",
+          "modal": {
+            "title": "设置出框",
+            "description": "",
+            "fields": [
+              {
+                "name": "宽度",
+                "type": "text",
+                "placeholder": "输入宽度",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "高度",
+                "type": "text",
+                "placeholder": "输入高度",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "是否等待",
+                "type": "checkbox",
+                "placeholder": "",
+                "step": "any",
+                "checkedValue": "true",
+                "uncheckedValue": "false"
+              },
+              {
+                "name": "动画时间（秒）",
+                "type": "text",
+                "placeholder": "",
+                "defaultValue": "1",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "色号",
+                "type": "text",
+                "placeholder": "输入色号",
+                "defaultValue": "#000000",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "位置X",
+                "type": "text",
+                "placeholder": "输入X坐标",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "位置Y",
+                "type": "text",
+                "placeholder": "输入Y坐标",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "旋转角度",
+                "type": "text",
+                "placeholder": "输入旋转角度",
+                "defaultValue": "0",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@animate MainBackground\n@spawn SubId:\"Front\" \"MaskingRectangle\" Params:{1},{2},{3},{4},{5} pos:{6},{7} Rotation:,,{8}"
+          }
+        },
+        {
+          "name": "隐藏出框",
+          "icon": "×",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@despawn MaskingRectangle-Front\n@hide Character-Front\n@hide MainBackground-Front"
+        }
+      ]
+    },
+    {
+      "name": "转场模板",
+      "items": [
+        {
+          "name": "淡入淡出模板1",
+          "icon": "1",
+          "type": "modal",
+          "modal": {
+            "title": "淡入淡出模板1",
+            "description": "",
+            "fields": [
+              {
+                "name": "淡入时长",
+                "type": "number",
+                "placeholder": "输入纯色遮罩层的动画时间",
+                "step": "0.01",
+                "required": true
+              },
+              {
+                "name": "淡出时长",
+                "type": "number",
+                "placeholder": "输入透明遮罩层的动画时间",
+                "step": "0.01",
+                "required": true
+              },
+              {
+                "name": "背景id",
+                "type": "text",
+                "placeholder": "输入背景id",
+                "required": true
+              },
+              {
+                "name": "是否为插图类（Stills）",
+                "type": "checkbox",
+                "label": "设为插图类",
+                "checkedValue": " Id:Stills ",
+                "uncheckedValue": " "
+              },
+              {
+                "name": "位置X",
+                "type": "number",
+                "placeholder": "输入x坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "位置Y",
+                "type": "number",
+                "placeholder": "输入y坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "缩放",
+                "type": "text",
+                "placeholder": "设置图片缩放",
+                "defaultValue": "{g_backgroundDefaultScale}",
+                "step": "any"
+              }
+            ],
+            "output": "@back SubId:\"Overlay\" SolidColor tint:\"#000000\" time:{1} wait:true\n@Wait \"0.5\"\n@back {3}{4}pos:{5},{6} Scale:{7} time:0 \n@Wait \"0.5\"\n@back SubId:\"Overlay\" Transparent tint:\"#000000\" time:{2} wait:true\n@Wait \"0.5\""
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "淡入淡出模板2",
+          "icon": "2",
+          "type": "modal",
+          "modal": {
+            "title": "淡入淡出模板2",
+            "description": "",
+            "fields": [
+              {
+                "name": "淡入时长",
+                "type": "number",
+                "placeholder": "输入纯色遮罩层的动画时间",
+                "step": "0.01",
+                "required": true
+              },
+              {
+                "name": "淡出时长",
+                "type": "number",
+                "placeholder": "输入透明遮罩层的动画时间",
+                "step": "0.01",
+                "required": true
+              },
+              {
+                "name": "背景id",
+                "type": "text",
+                "placeholder": "输入背景id",
+                "required": true
+              },
+              {
+                "name": "是否为插图类（Stills）",
+                "type": "checkbox",
+                "label": "设为插图类",
+                "checkedValue": " Id:Stills ",
+                "uncheckedValue": " "
+              },
+              {
+                "name": "位置X",
+                "type": "number",
+                "placeholder": "输入x坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "位置Y",
+                "type": "number",
+                "placeholder": "输入y坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "缩放",
+                "type": "text",
+                "placeholder": "设置图片缩放",
+                "defaultValue": "{g_backgroundDefaultScale}",
+                "step": "any"
+              }
+            ],
+            "output": "@back SubId:\"Overlay\" SolidColor.Custom dissolve:\"VerticalBlindGradually\" tint:\"#000000\" time:{1} wait:true\n@Wait \"0.5\"\n@back {3}{4}pos:{5},{6} Scale:{7} time:0 \n@Wait \"0.5\"\n@back SubId:\"Overlay\" Transparent.Custom dissolve:\"VerticalBlindGradually\" tint:\"#000000\" time:{2} wait:true\n@Wait \"0.5\""
+          },
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "自定义角色",
+      "items": [
+        {
+          "name": "显示自定义角色",
+          "icon": "+",
+          "type": "modal",
+          "modal": {
+            "title": "配置自定义角色表演",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色id",
+                "type": "text",
+                "placeholder": "输入自定义角色id",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "动作参数",
+                "type": "text",
+                "placeholder": "输入立绘id",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "位置X",
+                "type": "number",
+                "placeholder": "输入x坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "位置Y",
+                "type": "number",
+                "placeholder": "输入y坐标",
+                "step": "1",
+                "required": true
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "默认（不显示）",
+                "options": "Front、Middle",
+                "step": "any",
+                "fieldCategory": "optional",
+                "outputTemplate": "SubId:{N}"
+              },
+              {
+                "name": "动画时间（秒）",
+                "type": "number",
+                "placeholder": "根据需求填写",
+                "step": "0.1",
+                "fieldCategory": "optional",
+                "outputTemplate": "time:{N}",
+                "defaultValue": ""
+              },
+              {
+                "name": "比例（倍）",
+                "type": "number",
+                "placeholder": "根据需求填写",
+                "step": "0.01",
+                "fieldCategory": "optional",
+                "outputTemplate": "Scale:{N}",
+                "defaultValue": ""
+              },
+              {
+                "name": "色调（色号）",
+                "type": "text",
+                "placeholder": "根据需求填写",
+                "fieldCategory": "optional",
+                "outputTemplate": "tint:\"{N}\""
+              },
+              {
+                "name": "不允许等待",
+                "type": "checkbox",
+                "label": "勾选后会和下一条代码同时执行",
+                "checkedValue": "false",
+                "uncheckedValue": "true",
+                "fieldCategory": "optional",
+                "outputTemplate": "Wait:{N}",
+                "defaultValue": "unchecked"
+              }
+            ],
+            "output": "@char {1}.{2} pos:{3},{4}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "隐藏自定义角色",
+          "icon": "-",
+          "type": "modal",
+          "modal": {
+            "title": "隐藏自定义角色",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色id",
+                "type": "text",
+                "placeholder": "输入自定义角色id",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择该角色所在图层",
+                "options": "Middle|-Middle、Front|-Front",
+                "step": "any"
+              }
+            ],
+            "output": "@hide {1}{2}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "隐藏所有角色",
+          "icon": "〼",
+          "type": "direct",
+          "output": "@hidechars",
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "角色动画",
+      "items": [
+        {
+          "name": "使角色抖动",
+          "icon": "↔",
+          "type": "modal",
+          "modal": {
+            "title": "使角色抖动",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色",
+                "type": "dropdown",
+                "placeholder": "选择角色",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden、月代雪（Yuki）|Yuki",
+                "required": true,
+                "step": "any"
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择该角色所在图层",
+                "options": "Middle|-Middle、Front|-Front",
+                "step": "any"
+              }
+            ],
+            "output": "@EmoteShake {1}{2}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "使角色跳跃",
+          "icon": "↑",
+          "type": "modal",
+          "modal": {
+            "title": "使角色跳跃",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色",
+                "type": "dropdown",
+                "placeholder": "选择角色",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden、月代雪（Yuki）|Yuki",
+                "required": true,
+                "step": "any"
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择该角色所在图层",
+                "options": "Middle|-Middle、Front|-Front",
+                "step": "any"
+              }
+            ],
+            "output": "@EmoteJump {1}{2}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "使角色跳跃两次",
+          "icon": "↑↑",
+          "type": "modal",
+          "modal": {
+            "title": "使角色跳跃两次",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色",
+                "type": "dropdown",
+                "placeholder": "选择角色",
+                "options": "艾玛（Ema）|Ema、希罗（Hiro）|Hiro、诺亚（Noah）|Noah、安安（Anan）|Anan、蕾雅（Leia）|Leia、奈叶香（Nanoka）|Nanoka、玛格（Margo）|Margo、梅露露（Meruru）|Meruru、汉娜（Hanna）|Hanna、雪莉（Sherry）|Sherry、亚里沙（Alisa）|Alisa、可可（Coco）|Coco、米莉亚（Miria）|Miria、看守（Jailer）|Jailer、典狱长（Warden）|Warden、月代雪（Yuki）|Yuki",
+                "required": true,
+                "step": "any"
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择该角色所在图层",
+                "options": "Middle|-Middle、Front|-Front",
+                "step": "any"
+              }
+            ],
+            "output": "@EmoteJumpDouble {1}{2}"
+          },
+          "shortcut": ""
+        }
+      ]
+    },
+    {
+      "name": "自定义角色对话",
+      "items": [
+        {
+          "name": "添加自定义角色对话",
+          "icon": "Aa",
+          "type": "modal",
+          "modal": {
+            "title": "添加自定义角色对话",
+            "description": "",
+            "fields": [
+              {
+                "name": "对话文本",
+                "type": "text",
+                "placeholder": "输入对话文本",
+                "required": true
+              },
+              {
+                "name": "对话人物",
+                "type": "text",
+                "placeholder": "输入自定义角色id",
+                "step": "any",
+                "required": true
+              }
+            ],
+            "output": "@print \"{1}\" Author:\"{2}\" WaitInput:true Wait:true"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "快速添加对话",
+          "icon": ">",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "@print \"[对话]\" Author:\"[角色]\" WaitInput:true Wait:true",
+          "inlineInsert": true
+        },
+        {
+          "name": "插入换行符",
+          "icon": "↲",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "<br>",
+          "inlineInsert": true
+        },
+        {
+          "name": "插入空白符",
+          "icon": "",
+          "type": "direct",
+          "shortcut": "",
+          "modal": {
+            "title": "",
+            "description": "",
+            "fields": [],
+            "output": ""
+          },
+          "output": "　",
+          "inlineInsert": true
+        }
+      ]
+    },
+    {
+      "name": "自定义角色动画",
+      "items": [
+        {
+          "name": "使自定义角色抖动",
+          "icon": "↔",
+          "type": "modal",
+          "modal": {
+            "title": "使自定义角色抖动",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色id",
+                "type": "text",
+                "placeholder": "输入自定义角色id",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择该角色所在图层",
+                "options": "Middle|-Middle、Front|-Front",
+                "step": "any"
+              }
+            ],
+            "output": "@EmoteShake {1}{2}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "使自定义角色跳跃",
+          "icon": "↑",
+          "type": "modal",
+          "modal": {
+            "title": "使自定义角色跳跃",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色id",
+                "type": "text",
+                "placeholder": "输入自定义角色id",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择该角色所在图层",
+                "options": "Middle|-Middle、Front|-Front",
+                "step": "any"
+              }
+            ],
+            "output": "@EmoteJump {1}{2}"
+          },
+          "shortcut": ""
+        },
+        {
+          "name": "使自定义角色跳跃两次",
+          "icon": "↑↑",
+          "type": "modal",
+          "modal": {
+            "title": "使自定义角色跳跃两次",
+            "description": "",
+            "fields": [
+              {
+                "name": "角色id",
+                "type": "text",
+                "placeholder": "输入自定义角色id",
+                "step": "any",
+                "required": true
+              },
+              {
+                "name": "所在图层",
+                "type": "dropdown",
+                "placeholder": "选择该角色所在图层",
+                "options": "Middle|-Middle、Front|-Front",
+                "step": "any"
+              }
+            ],
+            "output": "@EmoteJumpDouble {1}{2}"
+          },
+          "shortcut": ""
+        }
+      ]
+    }
+  ]
+}

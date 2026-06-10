@@ -1,0 +1,316 @@
+@gosub GoodMorningHiro/Tools.BeginAdv
+@back BG01d pos:50,50 Scale:{g_backgroundDefaultScale} time:0
+@back SubId:"Overlay" Transparent.Custom dissolve:"VerticalBlindGradually" tint:"#000000" time:0.99 Lazy:false
+@Wait "0.9"
+@bgm "Bgm_24_1" Volume:1 Loop! fade:0
+
+@print "房间里维持着<br>一种一个人时特有的安静。" waitInput:true Wait:true
+@print "窗帘只拉了一半，<br>地板被斜落的光线<br>切出明亮的形状。" waitInput:true Wait:true
+@print "灰尘在光里慢慢浮动。" waitInput:true Wait:true
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Closed1,Mouth1_Angry_Closed1 pos:50,50 Lazy:false
+
+@print "我坐在地上，<br>面前是已经整理过一半的箱子。" waitInput:true Wait:true
+@print "这是艾玛的东西。" waitInput:true Wait:true
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "准确来说，<br>是「曾经属于艾玛」的东西。" waitInput:true Wait:true
+@print "衣服、书、没用完的笔记本、<br>便签，钢笔……<br>还有一些不知道是什么的小物件。" waitInput:true Wait:true
+@print "这些东西如果问她本人，<br>或许还能说清<br>每一样的来处。" waitInput:true Wait:true
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "但现在做不到了。" waitInput:true Wait:true
+
+@Wait "0.5"
+
+@print "我一件件拿出来，<br>又一件件放回去，<br>如此重复。" waitInput:true Wait:true
+@print "动作看似毫无意义，<br>可这是一个必要的过程。" waitInput:true Wait:true
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Closed1,Mouth1_Angry_Closed1 pos:50,50
+
+@print "让手指确认重量，<br>让视线确认形状，<br>让时间继续往前走。" waitInput:true Wait:true
+@print "我也只是再确认一遍——" waitInput:true Wait:true
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "她先离开了这里。" waitInput:true Wait:true
+@print "而我的世界，<br>真的已经没有她了。" waitInput:true Wait:true
+
+@Wait "0.8"
+@sfx "Sfx_66"
+
+@print "我从箱子里抽出一件薄外套，<br>布料还残留着一点形状，<br>像是她刚刚脱下来那样。" waitInput:true Wait:true
+@print "这是最外面穿的那件，<br>她很喜欢，袖口磨得有点旧。" waitInput:true Wait:true
+@print "一起出去时<br>我总是会把这件披在她身上。" waitInput:true Wait:true
+
+@Wait "0.3"
+
+Ema: 你是不是早就知道我会冷？
+Hiro: 我猜的。
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "我说不清<br>这到底是不是猜。" waitInput:true Wait:true
+@print "我只是习惯了<br>去注意她的呼吸，<br>步子和说话时的停顿。" waitInput:true Wait:true
+@print "也总是试着去拆解她的表情，<br>揣测她言语后的深意，<br>推测她的下一步行动。" waitInput:true Wait:true
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Closed1,Mouth1_Angry_Closed1 pos:50,50
+
+@print "这些已然成为<br>我的一种本能。" waitInput:true Wait:true
+
+@sfx "Sfx_66"
+
+@print "我把外套叠好，<br>折痕压得很轻，<br>放进「要留下」的那一堆里。" waitInput:true Wait:true
+@print "我并没有给自己设什么<br>「必须丢掉多少」的标准。" waitInput:true Wait:true
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "因为我确实放不下。" waitInput:true Wait:true
+
+@Wait "0.5"
+@sfx "Sfx_66"
+
+@print "衣服下面<br>压着一本薄薄的本子。" waitInput:true Wait:true
+
+@char Hiro.Surprised1 pos:50,50
+
+@print "这不是她的，<br>看封面是我的旧日记。" waitInput:true Wait:true
+@print "我愣了一下，<br>才想起来<br>这是我以前放在她那里的。" waitInput:true Wait:true
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "她说想读我的日记，<br>作为交换，<br>我也能读她的。" waitInput:true Wait:true
+@print "那时候我们关系已经很好了，<br>我认为这种行为<br>也没什么不可以。" waitInput:true Wait:true
+@print "毕竟日记这个东西<br>写出来就要做好<br>被别人看的打算。" waitInput:true Wait:true
+@print "况且那个人是她。" waitInput:true Wait:true
+
+@sfx "Sfx_43"
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "我翻开第一页，<br>字迹是小学时的，<br>几乎辨认不出来。" waitInput:true Wait:true
+@print "那是我还没学会<br>隐藏情绪的时期。" waitInput:true Wait:true
+@print "很多句子写到一半<br>就换了方向，<br>有的地方反复划掉又重新补上。" waitInput:true Wait:true
+@print "内容并不特别，<br>以现在的眼光看<br>无非是些琐事。" waitInput:true Wait:true
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "但也正是这些<br>对话的片段和情绪的残留<br>构成了我和她的日常。" waitInput:true Wait:true
+
+@sfx "Sfx_43"
+
+@print "我翻开第一页，<br>寻找有关她的部分。" waitInput:true Wait:true
+
+@Wait "0.5"
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "「下午的课艾玛问我借橡皮，<br>　晚上一起回家。」" waitInput:true Wait:true
+@print "我知道那只是她<br>想多和我说话的借口。" waitInput:true Wait:true
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "当时甚至有点烦，<br>可我再也不会<br>有这样的日常了。" waitInput:true Wait:true
+
+@Wait "0.3"
+@sfx "Sfx_43"
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "「艾玛问我明天<br>　要不要一起出去玩，<br>　我说要去补习班。」" waitInput:true Wait:true
+@print "「她说没关系，<br>　但她表情不太好。」" waitInput:true Wait:true
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "如果可以的话，<br>我一定会推掉所有的课，<br>陪去她任何想去的地方。" waitInput:true Wait:true
+
+@Wait "0.3"
+@sfx "Sfx_43"
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "「艾玛摔倒了，<br>　我背她去保健室。<br>　给她上药。」" waitInput:true Wait:true
+@print "「她在床上睡着了，<br>　我一直在旁边陪着。」" waitInput:true Wait:true
+@print "我第一次知道<br>那个总是吵吵闹闹的人<br>也有这么安静的时候。" waitInput:true Wait:true
+
+@char Hiro.Cry1 pos:50,50
+
+@print "只是现在……<br>哪怕想为她涂一次药，<br>也只能触摸到冰冷的空气。" waitInput:true Wait:true
+
+@Wait "0.5"
+@sfx "Sfx_43"
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "「今天和艾玛吵架了，<br>　不是她的错，<br>　但我也不想解释。」" waitInput:true Wait:true
+@print "「我们放学没有一起回家。」" waitInput:true Wait:true
+
+@sfx "Sfx_43"
+
+@print "「我本来今天<br>　想去找艾玛道歉的，<br>　但艾玛今天主动来找我道歉了。」" waitInput:true Wait:true
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "原来我从那时起<br>就开始利用她的感情<br>来折磨她了。" waitInput:true Wait:true
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Closed1,Mouth1_Angry_Closed1 pos:50,50
+
+@print "所以我总是傲慢地<br>肆意挥霍她的温柔啊……" waitInput:true Wait:true
+
+@Wait "0.5"
+@sfx "Sfx_43"
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "「艾玛今天跑步还是很慢，<br>　老师让她重来，<br>　她脸很红。」" waitInput:true Wait:true
+@print "「她看着我，<br>　我就陪她一起跑。」" waitInput:true Wait:true
+
+@char Hiro.Cry1 pos:50,50
+
+Hiro: 笨蛋……
+Hiro: 为什么这次跑这么快啊……
+Hiro: 为什么要丢下我啊……
+
+@char Hiro.Normal2,ArmR12,ArmL12,Eyes2_Angry_Open1,Mouth2_Cry_Closed1 pos:50,50
+
+Hiro: 为什么要先跑到<br>那个我触碰不到的终点去……
+
+@Wait "0.8"
+@sfx "Sfx_43"
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@print "「今天艾玛说<br>　想和我成为一辈子的朋友。」" waitInput:true Wait:true
+@print "「我告诉她一辈子很长，<br>　没人能保证，<br>　可她说她可以保证。」" waitInput:true Wait:true
+
+@char Hiro.Cry1 pos:50,50
+
+@print "我合上日记本，<br>额头抵在冰冷的封皮上。" waitInput:true Wait:true
+
+@Wait "0.5"
+
+Hiro: 骗子……大骗子……
+Hiro: 明明是你先说<br>要保证一辈子的。
+Hiro: 明明是你信誓旦旦地说<br>会一直陪着我……
+Hiro: 这种东西，<br>为什么要留给我啊……
+
+@Wait "1.0"
+@back SubId:"Overlay" SolidColor.Custom dissolve:"VerticalBlindGradually" tint:"#000000" time:0.99
+@Wait "0.5"
+@back SubId:"Overlay" Transparent.Custom dissolve:"VerticalBlindGradually" tint:"#000000" time:0.99
+@Wait "0.5"
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Closed1,Mouth1_Angry_Closed1 pos:50,50 Lazy:false
+
+@print "我伸手按住封面，<br>日记最美好的部分<br>已经快结束了。" waitInput:true Wait:true
+@print "再继续下去，就会进入<br>那些我至今<br>都不太敢直视的年份。" waitInput:true Wait:true
+
+@sfx "Sfx_66"
+
+@print "我把日记放回箱子，<br>一个小盒子<br>从衣服底下滑出来。" waitInput:true Wait:true
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Open5,Mouth1_Angry_Closed1 pos:50,50
+
+@sfx "Sfx_66"
+
+@print "我打开，<br>里面是一些零碎的纸条，<br>我随手抽出几张。" waitInput:true Wait:true
+
+@Wait "0.3"
+
+@sfx "Sfx_66"
+
+Ema: 今天希罗笑了，<br>是只给我看的那种。<br>好好看。
+@print "这都写的什么嘛……" waitInput:true Wait:true
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "其实是因为<br>你一直在看我，<br>我才会笑的。" waitInput:true Wait:true
+@print "你也只会给我<br>露出那份笑容，<br>不是吗……" waitInput:true Wait:true
+
+@Wait "0.3"
+@sfx "Sfx_66"
+
+Ema: 希罗明明很温柔，<br>却总是假装冷静。
+Ema: 但我并不讨厌她这样，<br>她的每一点我都喜欢。
+
+@char Hiro.Normal1,Arms3,Eyes1_Normal_Closed1,Mouth1_Angry_Closed1 pos:50,50
+
+@print "才不是这样。" waitInput:true Wait:true
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "那是我因自责<br>而流露出的怯懦。" waitInput:true Wait:true
+@print "是我一直在<br>偷窃你的这份喜欢。" waitInput:true Wait:true
+
+@Wait "0.3"
+@sfx "Sfx_66"
+
+Ema: 刚刚偷偷看了<br>希罗的侧脸。
+Ema: 她今天左边的头发有点翘，<br>好想伸手帮理一下啊。
+Ema: 但希罗和我正在写作业，<br>一定会生气的，算啦。
+
+@char Hiro.Surprised1 pos:50,50
+
+@print "我下意识地抬起手，<br>指尖触碰到了<br>自己左侧的头发。" waitInput:true Wait:true
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "把头发弄乱了<br>一次又一次。" waitInput:true Wait:true
+
+@char Hiro.Cry1 pos:50,50
+
+Hiro: 这种事倒是说出来啊……
+Hiro: 我才不会生气啊……
+
+@Wait "0.5"
+@sfx "Sfx_66"
+
+Ema: 希罗说<br>我和以前有点不一样。
+Ema: 意思是我变了吗？
+Ema: 如果我又变成了<br>她讨厌的样子，<br>真希望她能拉住我的手啊。
+
+@char Hiro.Normal2,ArmR12,ArmL12,Eyes2_Angry_Open1,Mouth2_Cry_Closed1 pos:50,50
+
+Hiro: 这种话……<br>为什么不当面给我说啊……
+
+@char Hiro.Normal1,ArmR13,ArmL13,Eyes1_Pensive_Open1,Mouth1_Cry_Closed1,Sweat1-1 pos:50,50
+
+@print "你从来没有<br>变成我讨厌的样子。" waitInput:true Wait:true
+
+@char Hiro.Cry1 pos:50,50
+
+@print "变坏的人明明是我啊，<br>艾玛……" waitInput:true Wait:true
+
+@Wait "0.5"
+@sfx "Sfx_66"
+
+Ema: 假如以后分开了，<br>希罗会不会也记得我？
+Ema: 开玩笑啦，<br>我才不要和希罗分开。
+
+@char Hiro.Surprised1 pos:50,50
+
+@print "我不知道她是在什么时候<br>写下这句话的。" waitInput:true Wait:true
+
+@char Hiro.Cry1 pos:50,50
+
+Hiro: 为什么要开这种玩笑……<br>笨蛋艾玛……
+
+@char Hiro.Normal2,ArmR12,ArmL12,Eyes2_Angry_Open1,Mouth2_Cry_Closed1 pos:50,50
+
+Hiro: 这种问题，<br>倒是去问那个<br>在无数次轮回里快要疯掉的我啊！
+
+@Wait "0.3"
+
+@char Hiro.Cry1 pos:50,50
+
+Hiro: 去问那个在电梯里<br>抱着你冰冷的身体，<br>连哭声都发不出来的我啊……
+
+@Wait "0.8"
+
+Hiro: 你说你「才不要分开」，<br>最后离开我的……
+
+@Wait "1.5"
+
+@StopBgm
+@hideChars
+@gosub System/System_Subroutine.EndAdv

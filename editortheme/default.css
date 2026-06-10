@@ -1,0 +1,153 @@
+/* 默认主题 - 经典白色 */
+body.theme-default {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+body.theme-default .container {
+    background-color: white;
+}
+
+body.theme-default .toolbar {
+    background-color: #f0f0f0;
+}
+
+body.theme-default .sidebar {
+    background-color: #f9f9f9;
+}
+
+body.theme-default .editor-wrapper {
+    background-color: white;
+}
+
+body.theme-default .line-numbers {
+    background-color: #f5f5f5;
+    color: #999;
+}
+
+body.theme-default .line-numbers .line-number.error-line {
+    background-color: #ffebee;
+    color: #d32f2f;
+}
+
+body.theme-default .line-numbers .line-number.warning-line {
+    background-color: #fff8e1;
+    color: #f57c00;
+}
+
+body.theme-default .editor textarea {
+    background-color: white;
+}
+
+body.theme-default .parsed-script {
+    background-color: #f9f9f9;
+}
+
+body.theme-default .parsed-line {
+    background-color: white;
+}
+
+body.theme-default .parsed-line.comment {
+    background-color: #f5f5f5;
+}
+body.theme-default .syntax-at {
+    color: #7b1fa2;
+}
+
+body.theme-default .syntax-command-name {
+    color: #5e35b1;
+}
+
+body.theme-default .syntax-attr-key {
+    color: #e65100;
+}
+
+body.theme-default .syntax-attr-operator {
+    color: #424242;
+}
+
+body.theme-default .syntax-string {
+    color: #6a1b9a;
+}
+
+body.theme-default .syntax-number {
+    color: #1565c0;
+}
+
+body.theme-default .syntax-boolean {
+    color: #2e7d32;
+}
+
+body.theme-default .syntax-identifier {
+    color: #455a64;
+}
+
+body.theme-default .syntax-dialogue-character {
+    color: #2e7d32;
+}
+
+body.theme-default .syntax-dialogue-text {
+    color: #1565c0;
+}
+
+body.theme-default .syntax-operator {
+    color: #37474f;
+}
+body.theme-default .footer {
+    background-color: #f0f0f0;
+}
+
+/* 阅读模式默认主题适配 */
+body.theme-default .reading-script {
+    background-color: #f5f0fa;
+    border-color: #ddd;
+}
+
+body.theme-default .reading-narration {
+    color: #555;
+    border-left-color: #bbb;
+}
+
+body.theme-default .reading-script-info {
+    color: #bbb;
+}
+
+body.theme-default .reading-character {
+    color: #6a1b9a;
+}
+
+body.theme-default .reading-quote {
+    color: #8e44ad;
+}
+
+body.theme-default .reading-dialogue-text {
+    color: #333;
+}
+
+body.theme-default .CodeMirror-hints {
+    background-color: white;
+    border: 1px solid #e8e0f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-family: 'Microsoft YaHei', Arial, sans-serif;
+    font-size: 14px;
+}
+
+body.theme-default .CodeMirror-hint {
+    color: #333;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+body.theme-default .CodeMirror-hint-active {
+    background-color: #f0e6ff;
+    color: #6a1b9a;
+}
+
+body.theme-default .CodeMirror-hint-tab-hint {
+    color: #999;
+    font-size: 11px;
+    font-style: italic;
+    border-top: 1px solid #e8e0f0;
+    margin-top: 4px;
+    padding-top: 4px;
+}

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网页剧本编辑器</title>
+    <link rel="stylesheet" href="import/codemirror.css">
+    <link rel="stylesheet" href="import/show-hint.css">
+    <link rel="stylesheet" href="editortheme/default.css" id="theme-css">
+    <link rel="stylesheet" href="dev剧本编辑器/styles.css">
+    <link rel="icon" type="image/png" href="icon.png">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>《魔法少女的魔女审判》剧本编辑器 <span class="version-badge">v1.3.3.3</span></h1>
+            <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        </div>
+
+        <div class="toolbar">
+            <div class="menu-bar">
+                <div class="menu-item" data-menu="file">
+                    <span class="menu-title">文件</span>
+                    <div class="menu-dropdown">
+                        <div class="menu-option" onclick="document.getElementById('fileInput').click()">📂 导入剧本</div>
+                        <div class="menu-option" onclick="openExportModal()">💾 导出剧本</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-option" onclick="importCustomOptions()">📥 导入自定义选项</div>
+                        <div class="menu-option" onclick="exportCustomOptions()">📤 导出自定义选项</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-option" onclick="importInfoJson()">📂 导入信息json</div>
+                        <div class="menu-option" onclick="exportInfoJson()">💾 导出信息json</div>
+                        <div class="menu-option" onclick="validateAndShowInfoJson()">🔍 校验信息json</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-menu="edit">
+                    <span class="menu-title">编辑</span>
+                    <div class="menu-dropdown">
+                        <div class="menu-option" onclick="formatScript()">🪥 格式化</div>
+                        <div class="menu-option" onclick="checkErrors()">🔍 错误检查</div>
+                        <div class="menu-option" onclick="openReplaceModal()">🔄 替换</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-option" onclick="openHistoryModal()">📋 历史回溯</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-option" onclick="clearEditor()">🗑️ 清空编辑器</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-menu="tools2">
+                    <span class="menu-title">工具</span>
+                    <div class="menu-dropdown">
+                        <div class="menu-option menu-has-submenu">
+                            <span>📖 代码提示</span>
+                            <span class="submenu-arrow">▸</span>
+                            <div class="menu-submenu">
+                                <div class="menu-option" onclick="setCodeHints(true)" id="menuHintOn">开</div>
+                                <div class="menu-option" onclick="setCodeHints(false)" id="menuHintOff">关</div>
+                            </div>
+                        </div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-option" onclick="openQuickInputModal()">📝 快速输入列表</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-option menu-option-warning" onclick="loadDefaultData()">🔄 加载为默认数据</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-menu="tools">
+                    <span class="menu-title">设置</span>
+                    <div class="menu-dropdown">
+                        <div class="menu-option" onclick="openPageFormatModal()">🎨 页面样式</div>
+                        <div class="menu-option menu-has-submenu">
+                            <span>📖 阅读模式</span>
+                            <span class="submenu-arrow">▸</span>
+                            <div class="menu-submenu">
+                                <div class="menu-option" onclick="setReadingScriptInfo(false)" id="menuReadingOn">显示简略信息
+                                </div>
+                                <div class="menu-option" onclick="setReadingScriptInfo(true)" id="menuReadingOff">显示详细信息
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-option" onclick="openTooltipShortcutModal()">⌨️ 工具提示快捷键</div>
+                        <div class="menu-divider"></div>
+                        <div class="menu-option" onclick="goToConfigEditor()">⚙️ 配置编辑器</div>
+                    </div>
+                </div>
+                <div class="menu-item" data-menu="help">
+                    <span class="menu-title">帮助</span>
+                    <div class="menu-dropdown">
+                        <div class="menu-option" onclick="showHelp()">❓ 使用帮助</div>
+                    </div>
+                </div>
+            </div>
+            <input type="file" id="fileInput" accept=".txt,.nani" style="display: none;">
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="搜索工具或剧本..." onkeydown="handleSearchKeydown(event)"
+                        oninput="handleSearchInput(event)">
+                    <span class="search-count" id="searchCount"></span>
+                </div>
+                <div class="search-actions">
+                    <button class="search-btn" onclick="prevMatch()" title="上一个">◀</button>
+                    <button class="search-btn" onclick="nextMatch()" title="下一个">▶</button>
+                    <button class="search-btn search-go" onclick="searchText()" title="搜索">搜索</button>
+                    <button class="search-btn clear-btn" onclick="clearSearch()" title="清除">✕</button>
+                </div>
+                <div id="searchDropdown" class="search-dropdown" style="display: none;"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <div class="sidebar-select-wrapper">
+                        <select id="sidebarSelect" onchange="switchSidebarContent(this.value)">
+                            <option value="">加载中...</option>
+                        </select>
+                    </div>
+                    <button class="toggle-all-btn" onclick="toggleAllCategories()">折叠</button>
+                </div>
+                <div id="tools-tab" class="sidebar-content">
+                    <div id="tools-container"></div>
+                </div>
+                <div id="info-panel" class="sidebar-content" style="display: none;"></div>
+            </div>
+
+            <div class="editor">
+                <div class="editor-tabs">
+                    <button class="tab-button active" onclick="switchEditorTab('text')">纯文本编辑</button>
+                    <button class="tab-button" onclick="switchEditorTab('parsed')">脚本解析</button>
+                    <button class="tab-button" onclick="switchEditorTab('reading')">阅读模式</button>
+                </div>
+                <div id="text-tab" class="editor-tab-content">
+                    <div class="editor-wrapper">
+                        <div class="line-numbers hidden" id="lineNumbers"></div>
+                        <div id="scriptEditor" class="code-editor"></div>
+                    </div>
+                </div>
+                <div id="parsed-tab" class="editor-tab-content" style="display: none;">
+                    <div id="parsedContent" class="parsed-script">
+                        <p>请在纯文本编辑模式下输入脚本内容，然后切换到脚本解析模式查看解析结果。</p>
+                    </div>
+                </div>
+                <div id="reading-tab" class="editor-tab-content" style="display: none;">
+                    <div id="readingContent" class="reading-script">
+                        <p>请在纯文本编辑模式下输入脚本内容，然后切换到阅读模式查看。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>网页制作：黑红粉白佳人制作组　|　© 2026 Manosaba-ScriptEditor All Rights Reserved</p>
+        </div>
+    </div>
+
+    <!-- 动态模态窗口容器 -->
+    <div id="dynamicModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="dynamicModalTitle"></h3>
+                <span class="close" onclick="closeModal('dynamicModal')">&times;</span>
+            </div>
+            <div class="modal-body" id="dynamicModalBody">
+            </div>
+            <div class="modal-footer" id="dynamicModalFooter">
+            </div>
+        </div>
+    </div>
+
+    <div id="helpModal" class="modal">
+        <div class="modal-content modal-content-large">
+            <div class="modal-header">
+                <h3>使用帮助</h3>
+                <span class="close" onclick="closeModal('helpModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" onclick="closeModal('helpModal')">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="changelogModal" class="modal">
+        <div class="modal-content modal-content-large">
+            <div class="modal-header">
+                <h3>更新日志</h3>
+                <span class="close" onclick="closeModal('changelogModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" onclick="closeModal('changelogModal')">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="replaceModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>替换文本</h3>
+                <span class="close" onclick="closeModal('replaceModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>搜索内容</label>
+                    <input type="text" id="replaceSearchInput" placeholder="输入要搜索的文本...">
+                </div>
+                <div class="form-group">
+                    <label>替换为</label>
+                    <input type="text" id="replaceTargetInput" placeholder="输入替换后的文本...">
+                </div>
+                <div class="replace-info" id="replaceInfo"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-secondary" onclick="replaceCurrentInModal()">替换当前</button>
+                <button class="modal-btn modal-btn-danger" onclick="replaceAllInModal()">全部替换</button>
+                <button class="modal-btn modal-btn-primary" onclick="closeModal('replaceModal')">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="exportModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>导出剧本</h3>
+                <span class="close" onclick="closeModal('exportModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>文件名</label>
+                    <input type="text" id="exportFilename" placeholder="输入文件名（不含扩展名）...">
+                </div>
+                <div class="form-group">
+                    <label>导出格式</label>
+                    <div class="format-select">
+                        <label class="radio-label">
+                            <input type="radio" name="exportFormat" value="txt" checked>
+                            <span>.txt</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="exportFormat" value="nani">
+                            <span>.nani</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" onclick="doExport()">导出</button>
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('exportModal')">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="pageFormatModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>页面样式设置</h3>
+                <span class="close" onclick="closeModal('pageFormatModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>主题</label>
+                    <div class="theme-select">
+                        <label class="theme-option">
+                            <input type="radio" name="theme" value="default" checked>
+                            <span class="theme-preview theme-preview-default"></span>
+                            <span class="theme-name">默认</span>
+                        </label>
+                        <label class="theme-option">
+                            <input type="radio" name="theme" value="eye-protection">
+                            <span class="theme-preview theme-preview-eye-protection"></span>
+                            <span class="theme-name">护眼模式</span>
+                        </label>
+                        <label class="theme-option">
+                            <input type="radio" name="theme" value="dark-blue">
+                            <span class="theme-preview theme-preview-dark-blue"></span>
+                            <span class="theme-name">黑蓝炫酷</span>
+                        </label>
+                        <label class="theme-option">
+                            <input type="radio" name="theme" value="light-blue">
+                            <span class="theme-preview theme-preview-light-blue"></span>
+                            <span class="theme-name">白蓝经典</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>字体</label>
+                    <select id="fontFamilySelect">
+                        <option value="'Microsoft YaHei', Arial, sans-serif">微软雅黑</option>
+                        <option value="'SimSun', serif">宋体</option>
+                        <option value="'SimHei', sans-serif">黑体</option>
+                        <option value="'KaiTi', serif">楷体</option>
+                        <option value="'Courier New', monospace">Courier New</option>
+                        <option value="'Arial', sans-serif">Arial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>字体大小</label>
+                    <select id="fontSizeSelect">
+                        <option value="12px">12px</option>
+                        <option value="14px" selected>14px</option>
+                        <option value="16px">16px</option>
+                        <option value="18px">18px</option>
+                        <option value="20px">20px</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>文字颜色</label>
+                    <input type="color" id="fontColorPicker" value="#333333">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" onclick="savePageFormat()">保存设置</button>
+                <button class="modal-btn modal-btn-secondary" onclick="resetPageFormat()">重置默认</button>
+                <button class="modal-btn modal-btn-secondary" onclick="closeModal('pageFormatModal')">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-message" id="successMessage">操作成功！</div>
+    <div class="error-message" id="errorMessage"></div>
+
+    <!-- 音频预览弹窗 -->
+    <div id="audioPreviewModal" class="modal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>🔊 音频预览</h3>
+                <span class="close" onclick="closeAudioPreviewModal()">&times;</span>
+            </div>
+            <div class="modal-body" style="text-align: center; padding: 30px;">
+                <div style="font-size: 64px; margin-bottom: 20px;">🔊</div>
+                <div id="audioPreviewContainer" style="margin: 20px 0;"></div>
+                <div id="audioPreviewUrl"
+                    style="font-size: 12px; color: #888; word-break: break-all; margin-top: 10px;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" onclick="closeAudioPreviewModal()">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="commandTooltip" class="command-tooltip">
+        <div class="tooltip-header">
+            <span class="tooltip-title"></span>
+            <span class="tooltip-overload-count"></span>
+            <span class="tooltip-pin-btn" id="tooltipPinBtn" title="点击或按 F2 固定悬浮窗并显示编辑按钮">[F2] 固定/编辑</span>
+        </div>
+        <div class="tooltip-content"></div>
+    </div>
+
+    <script src="import/codemirror.js"></script>
+    <script src="import/codemirror-simple-mode.js"></script>
+    <script src="import/codemirror-active-line.js"></script>
+    <script src="import/codemirror-closebrackets.js"></script>
+    <script src="import/show-hint.js"></script>
+    <script src="dev剧本编辑器/utils.js"></script>
+    <script src="dev剧本编辑器/tools-config.js"></script>
+    <script src="dev剧本编辑器/editor-core.js"></script>
+    <script src="dev剧本编辑器/editor-reading.js"></script>
+    <script src="dev剧本编辑器/editor-search.js"></script>
+    <script src="dev剧本编辑器/editor-tooltip.js"></script>
+    <script src="dev剧本编辑器/quick-category-input.js"></script>
+    <script src="dev剧本编辑器/info-json-editor.js"></script>
+    <script src="dev剧本编辑器/load-editor-config.js"></script>
+</body>
+
+</html>
